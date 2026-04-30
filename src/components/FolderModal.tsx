@@ -41,7 +41,7 @@ function FolderModal(props: {id: string, folderRef: RefObject<HTMLDivElement | n
         let itemsBeforeButton = (itemsPerRow - itemsAfterButton)
         return {
             width: itemWidth * itemsPerRow + 4,
-            top: folderButtonElem.offsetTop + folderButtonElem.offsetHeight,
+            top: folderButtonElem.offsetTop + folderButtonElem.offsetHeight + 8,
             left: folderButtonElem.offsetLeft - itemsBeforeButton * itemWidth - 11
         };
     })();
