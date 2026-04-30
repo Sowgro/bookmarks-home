@@ -28,7 +28,7 @@ function BookmarkIcon(props: {bmData: BookmarkTreeNode}) {
 
 // auto small or large
 function AutoBookmarkIcon(props: {imgSrc: string, size: number}) {
-    return props.size! < 75
+    return (props.size ?? 100) < 75
         ? (<SmallBookmarkIcon imgSrc={props.imgSrc}/>)
         : (<LargeBookmarkIcon imgSrc={props.imgSrc}/>);
 }
