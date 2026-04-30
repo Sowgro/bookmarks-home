@@ -10,6 +10,8 @@ interface OnMovedInfo {
 }
 
 class BookmarkDAO {
+    static readonly ROOT_ID = (browser.bookmarks as any).ROOT_NODE_ID ?? "root________";
+
     static async get(id: string) {
         return (await browser.bookmarks.get(id)).at(0)
     }

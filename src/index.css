@@ -212,10 +212,15 @@ body {
 
   input[type='color'] {
     background-color: transparent;
+    border-style: none;
   }
 
   .note {
     padding-top: 10px;
+  }
+
+  button:not(.default):hover {
+    background-color: #242424;
   }
 }
 

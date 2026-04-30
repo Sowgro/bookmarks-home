@@ -11,6 +11,10 @@ function SettingsEditor() {
 
     let [folders, setFolders] = useState<BookmarkTreeNode[]>([])
 
+    useEffect(() => {
+        BookmarkDAO.getAllFolders().then(r => setFolders(r));
+    }, []);
+
     function saveSettings() {
         console.log("saved settings") // TODO toast this
         SettingsDAO.put(settings);
@@ -26,9 +30,17 @@ function SettingsEditor() {
         }
     }
 
-    useEffect(() => {
-        BookmarkDAO.getAllFolders().then(r => setFolders(r));
-    }, []);
+    let getFolderDisplay = (i: BookmarkTreeNode) => {
+        if (i.title) {
+            return i.title;
+        }
+
+        if (i.id == BookmarkDAO.ROOT_ID) {
+            return 'Default'
+        }
+
+        return `Untitled (id: ${i.id})`
+    }
 
     let resetDefaultColors = () => {
         patchSettings({
@@ -40,7 +52,7 @@ function SettingsEditor() {
         })
     }
 
-    let isChrome = !!window.chrome
+    let isChrome = navigator.userAgent.includes("Chrome")
 
     return (<>
         <h1>Settings</h1>
@@ -126,7 +138,7 @@ function SettingsEditor() {
             onChange={e => patchSettings({rootFolder: e.target.value})}
         >
             {folders.map(i =>
-                <option value={i.id}>{i.title ? i.title : "Untitled (id:" + i.id + ")"}</option>
+                <option value={i.id}>{getFolderDisplay(i)}</option>
             )}
         </select>
 

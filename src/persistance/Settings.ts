@@ -1,3 +1,5 @@
+import {BookmarkDAO} from "./Bookmarks.ts";
+
 export interface ISettings {
     sort: "from-bookmarks" | "alphabetical" | "recent",
     foldersFirst: boolean,
@@ -8,7 +10,7 @@ export interface ISettings {
     modalBorderColor: string,
     enableDragging: boolean,
     editMode: boolean,
-    rootFolder: string | null,
+    rootFolder: string,
     keepFoldersOpen: boolean
 }
 
@@ -22,7 +24,7 @@ export let defaultSettings: ISettings = {
     modalBorderColor: 'rgba(255, 255, 255, 0.2)',
     enableDragging: true,
     editMode: false,
-    rootFolder: '0',
+    rootFolder: BookmarkDAO.ROOT_ID,
     keepFoldersOpen: false
 }
 

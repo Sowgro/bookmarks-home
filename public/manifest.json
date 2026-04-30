@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Beyond the Bar",
-  "version": "0.0.1",
-  "description": "A \"Better Bookmarks Page\" that allows for more freedom through page manipulation to display bookmarks in an easier to access manner.",
+  "name": "Bookmarks Home",
+  "version": "1.0",
+  "description": "A customizable new tab page displaying the users bookmarks",
   "chrome_url_overrides" : {
     "newtab": "index.html"
   },
@@ -11,16 +11,27 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
-  "author": "Owen Howell, Tyler Ferrari, Ariel Levy; students at RIT",
   "permissions": [
     "bookmarks",
     "storage"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
   },
   "content_scripts": [{
     "js": ["iconGrabber.js"],
     "matches": ["<all_urls>"]
-  }]
+  }],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "bookmarks-home@sowgro.net",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      },
+      "strict_min_version": "58.0"
+    }
+  }
 }
