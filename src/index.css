@@ -218,6 +218,10 @@ body {
   .note {
     padding-top: 10px;
   }
+
+  button:not(.default):hover {
+    background-color: #242424;
+  }
 }
 
 .icon-selector {
