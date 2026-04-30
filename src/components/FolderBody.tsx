@@ -23,10 +23,6 @@ function FolderBody(props: {id: string}) {
         updateBookmarks();
 
         return () => changeListener.deregister();
-    }, []);
-
-    useEffect(() => {
-        updateBookmarks();
     }, [settings]);
 
     if (!children.length) return;
