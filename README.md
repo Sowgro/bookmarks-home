@@ -15,5 +15,11 @@
 ![screenshot-editor.png](images/screenshot-editor.png)
 
 ### Building
-- Install libraries `npm install`
-- create unpacked extension in dist folder `npm run build`
+1. Install libraries
+```
+npm install
+```
+2. Generate unpacked extension in `dist/`
+```
+npm run build
+```
