@@ -52,7 +52,7 @@ function SettingsEditor() {
         })
     }
 
-    let isChrome = !!window.chrome
+    let isChrome = navigator.userAgent.includes("Chrome")
 
     return (<>
         <h1>Settings</h1>
