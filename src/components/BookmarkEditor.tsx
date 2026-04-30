@@ -30,7 +30,7 @@ function BookmarkEditor(props: {bmData: BookmarkTreeNode}) {
             />
 
             <h3>Icon</h3>
-            <IconPicker bmData={props.bmData}/>
+            <IconPicker key={props.bmData.id} bmData={props.bmData}/>
         </>)}
     </>)
 }

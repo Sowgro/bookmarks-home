@@ -123,6 +123,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             </IconOption>
             {googleIcon && (
                 <IconOption
+                    key={googleIcon.url}
                     isSelected={iconCache?.icon?.url === googleIcon.url}
                     onSelect={handleSelectGoogle}
                 >
@@ -131,6 +132,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             )}
             {iconsAval.map(i =>
                 <IconOption
+                    key={iconCache?.icon?.url}
                     isSelected={iconCache?.icon?.url === i.url}
                     onSelect={() => handleSelectSite(i)}
                 >
@@ -139,6 +141,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             )}
             {uploadedImages.map(i =>
                 <IconOption
+                    key={iconCache?.icon?.hash}
                     isSelected={iconCache?.icon?.hash === i.hash}
                     onSelect={() => handleSelectCustom(i)}
                 >
