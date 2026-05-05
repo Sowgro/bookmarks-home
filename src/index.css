@@ -6,7 +6,8 @@
   box-sizing: border-box;
 }
 
-html {
+:root {
+  color-scheme: light dark;
   --background: unset;
   --foreground: unset;
   --modal-border: unset;
@@ -18,6 +19,10 @@ html {
 a {
   color: var(--foreground);
   text-decoration: none;
+}
+
+br {
+  margin: 7px;
 }
 
 button:not(.default) {
@@ -176,6 +181,7 @@ body {
 }
 
 .sidebar {
+  color-scheme: dark;
   --foreground: white;
   color: white;
   position: fixed;
