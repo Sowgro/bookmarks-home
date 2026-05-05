@@ -26,12 +26,9 @@ jobs:
       - name: Build
         run: npm run build
  
-      - name: Zip dist
-        run: zip -r dist.zip dist/
- 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: dist.zip
+          path: dist/*
           retention-days: 7
