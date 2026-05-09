@@ -8,7 +8,7 @@ import {
     getImageDimensions,
     GoogleIconInfo,
     hashImage,
-    urlToDataUrl
+    imgUrlToDataUrl
 } from "../util/IconUtils.ts";
 import {IconAvalDAO, IconAvalEntry} from "../persistance/IconAval.ts";
 import {IconCacheDAO, IconCacheEntry} from "../persistance/IconCache.ts";
@@ -56,20 +56,37 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
         }
         let file = e.target.files[0];
 
-        let data = await fileToDataUrl(file);
+        let dataUrl = await fileToDataUrl(file);
+        if (!dataUrl) {
+            // TODO toast this error
+            return;
+        }
+
+        let imgDim = await getImageDimensions(dataUrl);
+        if (!imgDim) {
+            // TODO toast this error
+            return;
+        }
+
         let r = {
-            data,
-            size: (await getImageDimensions(data)).width,
-            hash: await hashImage(data)
+            data: dataUrl,
+            size: imgDim.width,
+            hash: await hashImage(dataUrl)
         }
         setUploadedImages([...uploadedImages, r])
     };
 
     let handleSelectSite = async (i: IconAvalEntry) => {
+        let dataUrl = await imgUrlToDataUrl(i.url);
+        if (!dataUrl) {
+            // TODO toast this error
+            return
+        }
+
         await IconCacheDAO.put(props.bmData.id, {
             icon: {
                 url: i.url,
-                data: await urlToDataUrl(i.url),
+                data: dataUrl,
                 size: i.size
             },
             setByUser: true,
@@ -101,9 +118,15 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
     }
 
     let handleSelectGoogle = async () => {
+        let dataUrl = await imgUrlToDataUrl(googleIcon!.url);
+        if (!dataUrl) {
+            // TODO toast this error
+            return;
+        }
+
         await IconCacheDAO.put(props.bmData.id, {
             icon: {
-                data: await urlToDataUrl(googleIcon!.url),
+                data: dataUrl,
                 url: googleIcon!.url,
                 size: googleIcon!.size
             },

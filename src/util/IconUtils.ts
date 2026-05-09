@@ -1,28 +1,28 @@
-async function urlToDataUrl(url: string) {
+async function imgUrlToDataUrl(url: string): Promise<string | undefined> {
     let response = await fetch(url);
     let blob: Blob = await response.blob();
-    return await new Promise<string>((resolve, reject) => {
+    return await new Promise((resolve) => {
         const reader = new FileReader()
         reader.onloadend = () => resolve(reader.result as any)
-        reader.onerror = reject
+        reader.onerror = () => resolve(undefined)
         reader.readAsDataURL(blob)
     });
 }
 
-async function fileToDataUrl(file: File) {
-    return await new Promise<string>((resolve, reject) => {
+async function fileToDataUrl(file: File): Promise<string | undefined> {
+    return await new Promise((resolve) => {
         let reader = new FileReader();
         reader.onload = () => resolve(reader.result as any)
-        reader.onerror = reject
+        reader.onerror = () => resolve(undefined)
         reader.readAsDataURL(file);
     })
 }
 
-function getImageDimensions(url: string): Promise<{width: number, height: number}> {
-    return new Promise((resolve, reject) => {
+function getImageDimensions(url: string): Promise<{width: number, height: number} | undefined> {
+    return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => resolve({width: img.naturalWidth, height: img.naturalHeight});
-        img.onerror = reject;
+        img.onerror = () => resolve(undefined);
         img.src = url;
     });
 }
@@ -55,11 +55,17 @@ async function getGoogleIcon(siteUrl: string): Promise<GoogleIconInfo | undefine
     if (!resp.ok) {
         return undefined;
     }
+
     let r = url.toString()
+    let imgDim = await getImageDimensions(r);
+    if (!imgDim) {
+        return undefined;
+    }
+
     return {
         url: r,
-        size: (await getImageDimensions(r)).width
+        size: imgDim.width
     }
 }
 
-export {urlToDataUrl, getImageDimensions, fileToDataUrl, hashImage, getGoogleIcon, type GoogleIconInfo}
+export {imgUrlToDataUrl, getImageDimensions, fileToDataUrl, hashImage, getGoogleIcon, type GoogleIconInfo}
