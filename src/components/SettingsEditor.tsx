@@ -57,6 +57,16 @@ function SettingsEditor() {
     return (<>
         <h1>Settings</h1>
 
+        <h3>Root folder</h3>
+        <select
+            value={settings.rootFolder!}
+            onChange={e => patchSettings({rootFolder: e.target.value})}
+        >
+            {folders.map(i =>
+                <option value={i.id}>{getFolderDisplay(i)}</option>
+            )}
+        </select>
+
         <h3>Sort</h3>
         <RadioButtonGroup
             value={settings.sort}
@@ -132,25 +142,7 @@ function SettingsEditor() {
             Reset default colors
         </button>
 
-        <h3>Root folder</h3>
-        <select
-            value={settings.rootFolder!}
-            onChange={e => patchSettings({rootFolder: e.target.value})}
-        >
-            {folders.map(i =>
-                <option value={i.id}>{getFolderDisplay(i)}</option>
-            )}
-        </select>
-
-        <h3>Icon Cache</h3>
-        <button
-            className={"default"}
-            onClick={_ => IconCacheDAO.clearAll()}
-        >
-            Clear Icon Cache
-        </button>
-
-        <h3>Items</h3>
+        <h3>Behavior</h3>
         <label>
             <input
                 type={"checkbox"}
@@ -167,16 +159,22 @@ function SettingsEditor() {
             />
             Enable editing items
         </label>
-
-        <h3>Open Folders</h3>
         <label>
             <input
                 type={"checkbox"}
                 checked={settings.keepFoldersOpen}
                 onChange={e => patchSettings({keepFoldersOpen: e.target.checked})}
             />
-            Keep folders open
+            Remember open folders
         </label>
+
+        <h3>Data</h3>
+        <button
+            className={"default"}
+            onClick={_ => IconCacheDAO.clearAll()}
+        >
+            Clear Icon Cache
+        </button>
     </>)
 }
 

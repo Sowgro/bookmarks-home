@@ -44,11 +44,19 @@ class IconCacheDAO {
     }
 
     static async clearAll() {
-        return await Promise.all(
-            (await browser.storage.local.getKeys())
-                .filter(k => k.includes(this.KEY('')))
-                .map((k) => browser.storage.local.remove(k))
-        )
+        let keys = await browser.storage.local.getKeys();
+        let tasks = keys.map(async (key) => {
+            if (!key.includes(this.KEY(''))) {
+                return;
+            }
+            await browser.storage.local.remove(key)
+
+            let id = key.match(/^icon-cache-(.+)/)?.[1]
+            if (id) {
+                this.changeListeners.forEach(i => i(id))
+            }
+        })
+        await Promise.all(tasks)
     }
 }
 
