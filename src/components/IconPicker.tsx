@@ -34,7 +34,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
 
     useEffect(() => {
         refreshCache();
-        IconAvalDAO.get(props.bmData.id).then(r => r && setIconsAval(r))
+        IconAvalDAO.getFromUrl(props.bmData.url!).then(r => r && setIconsAval(r))
         getGoogleIcon(props.bmData.url!).then(r => r && setGoogleIcon(r))
     }, []);
 

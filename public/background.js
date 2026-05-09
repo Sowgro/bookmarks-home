@@ -8,7 +8,7 @@ browser.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
         .at(0);
 
     if (bmk) {
-        const obj = { [`icon-aval-${bmk.id}`]: JSON.stringify(foundIcons) };
+        const obj = { [`icon-aval-2-${hostname}`]: JSON.stringify(foundIcons) };
 
         await browser.storage.local.set(obj);
         console.debug("set to storage:", obj);

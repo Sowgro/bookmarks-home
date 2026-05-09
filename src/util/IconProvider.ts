@@ -19,7 +19,7 @@ async function getIconInfo(bmData: BookmarkTreeNode): Promise<IconInfo | undefin
 }
 
 async function bestIconFromSite(bmData: BookmarkTreeNode): Promise<IconInfo | undefined> {
-    let icons_aval = await IconAvalDAO.get(bmData.id);
+    let icons_aval = await IconAvalDAO.getFromUrl(bmData.url!);
     if (!icons_aval || !icons_aval.length) {
         return undefined
     }

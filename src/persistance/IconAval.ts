@@ -5,10 +5,16 @@ interface IconAvalEntry {
 }
 
 class IconAvalDAO {
-    private static readonly KEY = (id: string) => `icon-aval-${id}`
+    // NOTE: Used externally
+    private static readonly KEY = (host: string) => `icon-aval-2-${host}`
 
-    static async get(id: string): Promise<IconAvalEntry[] | undefined> {
-        let data = Object.values(await browser.storage.local.get(this.KEY(id))).at(0)
+    static getFromUrl(url: string) {
+        let obj = new URL(url);
+        return this.get(obj.hostname)
+    }
+
+    static async get(host: string): Promise<IconAvalEntry[] | undefined> {
+        let data = Object.values(await browser.storage.local.get(this.KEY(host))).at(0)
         return data ? JSON.parse(data) : undefined
     }
 }
