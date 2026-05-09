@@ -1,18 +1,17 @@
 async function imgUrlToDataUrl(url: string): Promise<string | undefined> {
     let response = await fetch(url);
+    if (!response.ok) {
+        return undefined;
+    }
+
     let blob: Blob = await response.blob();
-    return await new Promise((resolve) => {
-        const reader = new FileReader()
-        reader.onloadend = () => resolve(reader.result as any)
-        reader.onerror = () => resolve(undefined)
-        reader.readAsDataURL(blob)
-    });
+    return await fileToDataUrl(blob)
 }
 
-async function fileToDataUrl(file: File): Promise<string | undefined> {
+async function fileToDataUrl(file: Blob): Promise<string | undefined> {
     return await new Promise((resolve) => {
         let reader = new FileReader();
-        reader.onload = () => resolve(reader.result as any)
+        reader.onloadend = () => resolve(reader.result as any)
         reader.onerror = () => resolve(undefined)
         reader.readAsDataURL(file);
     })
