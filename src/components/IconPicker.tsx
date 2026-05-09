@@ -8,7 +8,8 @@ import {
     getImageDimensions,
     GoogleIconInfo,
     hashImage,
-    imgUrlToDataUrl
+    imgUrlToDataUrl,
+    resizeDataUrl
 } from "../util/IconUtils.ts";
 import {IconAvalDAO, IconAvalEntry} from "../persistance/IconAval.ts";
 import {IconCacheDAO, IconCacheEntry} from "../persistance/IconCache.ts";
@@ -61,6 +62,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             // TODO toast this error
             return;
         }
+        dataUrl = await resizeDataUrl(dataUrl);
 
         let imgDim = await getImageDimensions(dataUrl);
         if (!imgDim) {
@@ -82,6 +84,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             // TODO toast this error
             return
         }
+        dataUrl = await resizeDataUrl(dataUrl);
 
         await IconCacheDAO.put(props.bmData.id, {
             icon: {
@@ -123,6 +126,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
             // TODO toast this error
             return;
         }
+        dataUrl = await resizeDataUrl(dataUrl);
 
         await IconCacheDAO.put(props.bmData.id, {
             icon: {

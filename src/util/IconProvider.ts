@@ -1,5 +1,5 @@
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
-import {getGoogleIcon, imgUrlToDataUrl} from "./IconUtils.ts";
+import {getGoogleIcon, imgUrlToDataUrl, resizeDataUrl} from "./IconUtils.ts";
 import {IconCacheDAO, IconInfo} from "../persistance/IconCache.ts";
 import {IconAvalDAO} from "../persistance/IconAval.ts";
 
@@ -29,6 +29,7 @@ async function bestIconFromSite(bmData: BookmarkTreeNode): Promise<IconInfo | un
     if (!dataUrl) {
         return undefined
     }
+    dataUrl = await resizeDataUrl(dataUrl);
 
     let iconInfo = {
         url: iconAval.url,
@@ -53,6 +54,7 @@ async function iconFromGoogle(bmData: BookmarkTreeNode): Promise<IconInfo | unde
     if (!dataUrl) {
         return undefined
     }
+    dataUrl = await resizeDataUrl(dataUrl);
 
     let iconInfo = {
         data: dataUrl,

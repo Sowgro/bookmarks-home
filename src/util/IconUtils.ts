@@ -41,6 +41,36 @@ async function hashImage(dataUrl: string): Promise<string> {
     return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+async function resizeDataUrl(dataUrl: string, size = 256): Promise<string> {
+    let fileType = dataUrl.match(/^data:([^;,]+)/)?.[1]!
+    if (!fileType.startsWith("image/") || fileType === "image/svg+xml") {
+        return dataUrl;
+    }
+
+    return await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            const smallestDim = Math.min(img.naturalWidth, img.naturalHeight);
+
+            if (smallestDim <= size) {
+                resolve(dataUrl);
+                return;
+            }
+
+            const scale = size / smallestDim;
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.round(img.naturalWidth * scale);
+            canvas.height = Math.round(img.naturalHeight * scale);
+
+            const ctx = canvas.getContext("2d")!;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL(fileType));
+        };
+        img.onerror = reject;
+        img.src = dataUrl;
+    });
+}
+
 interface GoogleIconInfo {
     url: string
     size: number
@@ -67,4 +97,4 @@ async function getGoogleIcon(siteUrl: string): Promise<GoogleIconInfo | undefine
     }
 }
 
-export {imgUrlToDataUrl, getImageDimensions, fileToDataUrl, hashImage, getGoogleIcon, type GoogleIconInfo}
+export {imgUrlToDataUrl, getImageDimensions, fileToDataUrl, hashImage, resizeDataUrl, getGoogleIcon, type GoogleIconInfo}
