@@ -10,7 +10,7 @@ async function getIconInfo(bmData: BookmarkTreeNode): Promise<IconInfo | undefin
         return await bestIconFromSite(bmData) || await iconFromGoogle(bmData)
     }
 
-    if (!cache.setByUser) {
+    if (!cache.setByUser && cache.source !== 'site') {
         let r = await bestIconFromSite(bmData)
         if (r) return r;
     }
