@@ -14,6 +14,11 @@
 ![screenshot-settings.png](images/screenshot-settings.png)
 ![screenshot-editor.png](images/screenshot-editor.png)
 
+### Links
+[Chrome web store](https://chromewebstore.google.com/detail/bookmarks-home/bfehoohfhipooldjdipdbfeneacgchhm)
+
+[Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/bookmarks-home)
+
 ### Building
 1. Install libraries
 ```
