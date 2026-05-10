@@ -37,7 +37,7 @@ class IconCacheDAO {
         this.changeListeners.push(change)
 
         const deregister = () => {
-            this.changeListeners = this.changeListeners.filter(i => i === change)
+            this.changeListeners = this.changeListeners.filter(i => i !== change)
         }
 
         return { deregister }
