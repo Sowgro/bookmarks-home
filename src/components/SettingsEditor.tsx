@@ -5,6 +5,7 @@ import {defaultSettings, SettingsDAO} from "../persistance/Settings.ts";
 import BookmarkTreeNode = browser.bookmarks.BookmarkTreeNode;
 import {IconCacheDAO} from "../persistance/IconCache.ts";
 import {BookmarkDAO} from "../persistance/Bookmarks.ts";
+import {IconAvalDAO} from "../persistance/IconAval.ts";
 
 function SettingsEditor() {
     let [settings, setSettings] = useContext(Settings)
@@ -173,7 +174,14 @@ function SettingsEditor() {
             className={"default"}
             onClick={_ => IconCacheDAO.clearAll()}
         >
-            Clear Icon Cache
+            Reset default icons
+        </button>
+        <br/>
+        <button
+            className={"default"}
+            onClick={_ => IconAvalDAO.clearAll()}
+        >
+            Clear collected icons
         </button>
     </>)
 }
