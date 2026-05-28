@@ -1,4 +1,3 @@
-import RadioButtonGroup from "./RadioButtonGroup.tsx";
 import React, {useContext, useEffect, useState} from "react";
 import {Settings} from "./Context.tsx";
 import {defaultSettings, SettingsDAO} from "../persistance/Settings.ts";
@@ -58,40 +57,45 @@ function SettingsEditor() {
     return (<>
         <h1>Settings</h1>
 
-        <h3>Root folder</h3>
-        <select
-            value={settings.rootFolder!}
-            onChange={e => patchSettings({rootFolder: e.target.value})}
-        >
-            {folders.map(i =>
-                <option value={i.id}>{getFolderDisplay(i)}</option>
-            )}
-        </select>
-
-        <h3>Sort</h3>
-        <RadioButtonGroup
-            value={settings.sort}
-            onChange={e => patchSettings({sort: e})}
-        >
-            <option value={"from-bookmarks"}>Custom Order</option>
-            <option value={"alphabetical"}>Alphabetical</option>
-            {isChrome &&
-                (<option value={"recent"}>Recently used</option>)
-            }
-        </RadioButtonGroup>
-        <br/>
+        <h3>Bookmarks</h3>
         <label>
+            Root Folder
+            <select
+                value={settings.rootFolder!}
+                onChange={e => patchSettings({rootFolder: e.target.value})}
+            >
+                {folders.map(i =>
+                    <option value={i.id}>{getFolderDisplay(i)}</option>
+                )}
+            </select>
+        </label>
+
+        <label>
+            Sort
+            <select
+                value={settings.sort}
+                onChange={e => patchSettings({sort: e})}
+            >
+                <option value={"from-bookmarks"}>Custom Order</option>
+                <option value={"alphabetical"}>Alphabetical</option>
+                {isChrome &&
+                    (<option value={"recent"}>Recently used</option>)
+                }
+            </select>
+        </label>
+
+        <label>
+            Folders First
             <input
                 type={"checkbox"}
                 checked={settings.foldersFirst}
                 onChange={e => patchSettings({foldersFirst: e.target.checked})}
             />
-            Sort Folders First
         </label>
 
         <h3>Colors</h3>
         <label>
-            Foreground:
+            Foreground
             <input
                 type={"color"}
                 value={settings.foregroundColor}
@@ -100,7 +104,7 @@ function SettingsEditor() {
             />
         </label>
         <label>
-            Background:
+            Background
             <input
                 type={"color"}
                 value={settings.backgroundColor}
@@ -109,7 +113,7 @@ function SettingsEditor() {
             />
         </label>
         <label>
-            Folder foreground:
+            Folder foreground
             <input
                 type={"color"}
                 value={settings.modalForegroundColor}
@@ -118,7 +122,7 @@ function SettingsEditor() {
             />
         </label>
         <label>
-            Folder background:
+            Folder background
             <input
                 type={"color"}
                 value={settings.modalBackgroundColor}
@@ -127,7 +131,7 @@ function SettingsEditor() {
             />
         </label>
         <label>
-            Folder border:
+            Folder border
             <input
                 type={"color"}
                 value={settings.modalBorderColor}
@@ -135,54 +139,64 @@ function SettingsEditor() {
                 onBlur={() => saveSettings()}
             />
         </label>
-        <br/>
-        <button
-            className={"default"}
-            onClick={resetDefaultColors}
-        >
-            Reset default colors
-        </button>
+        <label>
+            <div/>
+            <button
+                className={"default"}
+                onClick={resetDefaultColors}
+            >
+                Reset
+            </button>
+        </label>
+
 
         <h3>Behavior</h3>
         <label>
+            Enable dragging links
             <input
                 type={"checkbox"}
                 checked={settings.enableDragging}
                 onChange={e => patchSettings({enableDragging: e.target.checked})}
             />
-            Enable dragging links
         </label>
         <label>
+            Enable editing items
             <input
                 type={"checkbox"}
                 checked={settings.editMode}
                 onChange={e => patchSettings({editMode: e.target.checked})}
             />
-            Enable editing items
         </label>
         <label>
+            Remember open folders
             <input
                 type={"checkbox"}
                 checked={settings.keepFoldersOpen}
                 onChange={e => patchSettings({keepFoldersOpen: e.target.checked})}
             />
-            Remember open folders
         </label>
 
         <h3>Data</h3>
-        <button
-            className={"default"}
-            onClick={_ => IconCacheDAO.clearAll()}
-        >
-            Reset default icons
-        </button>
-        <br/>
-        <button
-            className={"default"}
-            onClick={_ => IconAvalDAO.clearAll()}
-        >
-            Clear collected icons
-        </button>
+        <label>
+            Default icons
+            <button
+                className={"default"}
+                onClick={_ => IconCacheDAO.clearAll()}
+            >
+                Reset
+            </button>
+        </label>
+
+        <label>
+            Collected icons
+            <button
+                className={"default"}
+                onClick={_ => IconAvalDAO.clearAll()}
+            >
+                Clear
+            </button>
+        </label>
+
     </>)
 }
 

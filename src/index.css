@@ -186,19 +186,27 @@ body {
   color: white;
   position: fixed;
   height: 100%;
-  width: 300px;
+  width: 250px;
   background-color: black;
-  padding: 10px;
+  padding: 15px;
   right: 0;
   top: 0;
   bottom: 0;
   display: flex;
   flex-direction: column;
-  place-items: flex-start;
   z-index: 200;
   transform: translateX(100%);
   transition: all 0.2s ease-in-out;
   overflow: auto;
+  font-size: 14px;
+
+  h3 {
+    color: #b1b1b1;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 100;
+    margin: 15px 0 5px 0;
+  }
 
   &.swap-sides {
     right: unset;
@@ -219,11 +227,30 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    min-height: 35px;
+    padding: 0 15px;
+    margin: 0 -15px;
+
+    &:hover {
+      background-color: #242424;
+    }
   }
 
   input[type='color'] {
     background-color: transparent;
     border-style: none;
+    padding: 0;
+    inline-size: 20px;
+    block-size: 20px;
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+      border-radius: 50px;
+    }
   }
 
   .note {
@@ -239,7 +266,6 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 15px;
 
   .icon-box {
     width: 75px;

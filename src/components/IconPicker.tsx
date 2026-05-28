@@ -176,8 +176,13 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
         {!iconsAval.length && (
             <span className={'note'}>More icons may appear after loading the page.</span>
         )}
-        <h4>Custom</h4>
-        <input type={"file"} accept={"image/*"} className={"default"} name={"Upload"} onChange={handleImageUpload}/>
+        <input
+            type={"file"}
+            accept={"image/*"}
+            className={"default"}
+            name={"Upload"}
+            onChange={handleImageUpload}
+        />
     </>)
 }
 
