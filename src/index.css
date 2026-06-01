@@ -188,7 +188,7 @@ body {
   height: 100%;
   width: 250px;
   background-color: black;
-  padding: 15px;
+  padding: 10px;
   right: 0;
   top: 0;
   bottom: 0;
@@ -199,6 +199,11 @@ body {
   transition: all 0.2s ease-in-out;
   overflow: auto;
   font-size: 14px;
+
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
 
   h3 {
     color: #b1b1b1;
@@ -229,27 +234,39 @@ body {
     align-items: center;
     justify-content: space-between;
     min-height: 35px;
-    padding: 0 15px;
-    margin: 0 -15px;
+    gap: 10px;
+    text-wrap: nowrap;
+  }
 
-    &:hover {
-      background-color: #242424;
-    }
+  input {
+    max-width: 175px;
+  }
+
+  select {
+    min-width: 0;
   }
 
   input[type='color'] {
     background-color: transparent;
-    border-style: none;
     padding: 0;
     inline-size: 20px;
     block-size: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50px;
+    border-color: #858585;
+
+    &:enabled:hover {
+      border-color: #b1b1b1;
+    }
 
     &::-webkit-color-swatch-wrapper {
+      border-style: none;
       padding: 0;
     }
 
-    &::-webkit-color-swatch {
-      border-radius: 50px;
+    &::-webkit-color-swatch, &::-moz-color-swatch {
+      border-style: none;
     }
   }
 
@@ -258,7 +275,7 @@ body {
   }
 
   button:not(.default):hover {
-    background-color: #242424;
+    background-color: rgba(255, 255, 255, 15%);
   }
 }
 
@@ -266,6 +283,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 
   .icon-box {
     width: 75px;

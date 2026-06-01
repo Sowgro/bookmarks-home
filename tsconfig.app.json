@@ -18,5 +18,8 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "node_modules/show-open-file-picker/polyfill.d.ts"
+  ]
 }
