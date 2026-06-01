@@ -182,7 +182,7 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
         </div>
         <label>
             Custom icon
-            <button className={'default'} onClick={handleImageUpload}>Upload</button>
+            <button onClick={handleImageUpload}>Upload</button>
         </label>
         {!iconsAval.length && (
             <span className={'note'}>More icons may appear after loading the bookmarked page.</span>

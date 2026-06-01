@@ -50,7 +50,7 @@ function ContextMenu(props: {bmData: BookmarkTreeNode, isFolder?: boolean}) {
 
     return (
         <div className={"overflow"}>
-            <button onClick={onClick}>
+            <button className={"icon-button"} onClick={onClick}>
                 <MoreIcon/>
             </button>
             {open &&

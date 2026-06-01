@@ -141,10 +141,7 @@ function SettingsEditor() {
         </label>
         <label>
             <div/>
-            <button
-                className={"default"}
-                onClick={resetDefaultColors}
-            >
+            <button onClick={resetDefaultColors}>
                 Reset
             </button>
         </label>
@@ -179,20 +176,14 @@ function SettingsEditor() {
         <h3>Data</h3>
         <label>
             Default icons
-            <button
-                className={"default"}
-                onClick={_ => IconCacheDAO.clearAll()}
-            >
+            <button onClick={_ => IconCacheDAO.clearAll()}>
                 Reset
             </button>
         </label>
 
         <label>
             Collected icons
-            <button
-                className={"default"}
-                onClick={_ => IconAvalDAO.clearAll()}
-            >
+            <button onClick={_ => IconAvalDAO.clearAll()}>
                 Clear
             </button>
         </label>

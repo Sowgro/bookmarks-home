@@ -25,10 +25,11 @@ br {
   margin: 7px;
 }
 
-button:not(.default) {
+button.icon-button {
   border-style: none;
   background: none;
   color: var(--foreground);
+  border-radius: 50px;
 
   &:hover {
     /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
@@ -274,7 +275,7 @@ body {
     padding-top: 10px;
   }
 
-  button:not(.default):hover {
+  button.icon-button:hover {
     background-color: rgba(255, 255, 255, 15%);
   }
 }
@@ -443,6 +444,9 @@ body {
   gap: 2px;
 
   button {
+    border-style: none;
+    background: none;
+    color: var(--foreground);
     display: flex;
     flex-direction: row;
     height: 30px;
@@ -451,6 +455,11 @@ body {
     gap: 2px;
     justify-content: flex-start;
     font-size: 15px;
+
+    &:hover {
+      /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   }
 
   svg {
