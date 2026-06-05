@@ -28,12 +28,10 @@ br {
 button.icon-button {
   border-style: none;
   background: none;
-  color: var(--foreground);
-  border-radius: 50px;
+  color: color-mix(in srgb, var(--foreground), transparent 25%);
 
   &:hover {
-    /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
-    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--foreground)
   }
 }
 
@@ -88,8 +86,7 @@ body {
   isolation: isolate;
 
   &:hover {
-    /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
   }
 
   &:hover .overflow, .overflow:hover, .overflow:has(.context-menu) {
@@ -274,10 +271,6 @@ body {
   .note {
     padding-top: 10px;
   }
-
-  button.icon-button:hover {
-    background-color: rgba(255, 255, 255, 15%);
-  }
 }
 
 .icon-selector {
@@ -457,17 +450,12 @@ body {
     font-size: 15px;
 
     &:hover {
-      /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: #242424;
     }
   }
 
   svg {
     max-height: 100%;
-  }
-
-  button:hover {
-    background-color: #242424;
   }
 
   .del {
