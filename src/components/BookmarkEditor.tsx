@@ -14,20 +14,26 @@ function BookmarkEditor(props: {bmData: BookmarkTreeNode}) {
     return (<>
         <h1>Edit {isFolder ? "Folder" : "Bookmark"}</h1>
 
-        <h3>Name</h3>
-        <input
-            type={"text"}
-            defaultValue={props.bmData.title}
-            onBlur={e => updateBookmark({title: e.target.value})}
-        />
+        <h3>Info</h3>
+
+        <label>
+            Name
+            <input
+                type={"text"}
+                defaultValue={props.bmData.title}
+                onBlur={e => updateBookmark({title: e.target.value})}
+            />
+        </label>
 
         {!isFolder && (<>
-            <h3>URL</h3>
-            <input
-                type={"url"}
-                defaultValue={props.bmData.url}
-                onBlur={e => updateBookmark({url: e.target.value})}
-            />
+            <label>
+                URL
+                <input
+                    type={"url"}
+                    defaultValue={props.bmData.url}
+                    onBlur={e => updateBookmark({url: e.target.value})}
+                />
+            </label>
 
             <h3>Icon</h3>
             <IconPicker key={props.bmData.id} bmData={props.bmData}/>

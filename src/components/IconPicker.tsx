@@ -51,11 +51,18 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
         }
     }, [iconCache]);
 
-    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
-        if (!e.target.files || !e.target.files.length) {
+    const handleImageUpload = async (): Promise<void> => {
+        let file
+        try {
+            let files = await showOpenFilePicker({
+                types: [{ description: "Images", accept: { "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp"] } }],
+                multiple: false
+            });
+            file = await files[0].getFile();
+        } catch {
+            // TODO toast this error
             return;
         }
-        let file = e.target.files[0];
 
         let dataUrl = await fileToDataUrl(file);
         if (!dataUrl) {
@@ -173,11 +180,13 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
                 </IconOption>
             )}
         </div>
+        <label>
+            Custom icon
+            <button onClick={handleImageUpload}>Upload</button>
+        </label>
         {!iconsAval.length && (
-            <span className={'note'}>More icons may appear after loading the page.</span>
+            <span className={'note'}>More icons may appear after loading the bookmarked page.</span>
         )}
-        <h4>Custom</h4>
-        <input type={"file"} accept={"image/*"} className={"default"} name={"Upload"} onChange={handleImageUpload}/>
     </>)
 }
 

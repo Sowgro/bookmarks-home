@@ -25,10 +25,11 @@ br {
   margin: 7px;
 }
 
-button:not(.default) {
+button.icon-button {
   border-style: none;
   background: none;
   color: var(--foreground);
+  border-radius: 50px;
 
   &:hover {
     /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
@@ -186,7 +187,7 @@ body {
   color: white;
   position: fixed;
   height: 100%;
-  width: 300px;
+  width: 250px;
   background-color: black;
   padding: 10px;
   right: 0;
@@ -194,11 +195,24 @@ body {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  place-items: flex-start;
   z-index: 200;
   transform: translateX(100%);
   transition: all 0.2s ease-in-out;
   overflow: auto;
+  font-size: 14px;
+
+  h1 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    color: #b1b1b1;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 100;
+    margin: 15px 0 5px 0;
+  }
 
   &.swap-sides {
     right: unset;
@@ -219,19 +233,50 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    min-height: 35px;
+    gap: 10px;
+    text-wrap: nowrap;
+  }
+
+  input {
+    max-width: 175px;
+  }
+
+  select {
+    min-width: 0;
   }
 
   input[type='color'] {
     background-color: transparent;
-    border-style: none;
+    padding: 0;
+    inline-size: 20px;
+    block-size: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50px;
+    border-color: #858585;
+
+    &:enabled:hover {
+      border-color: #b1b1b1;
+    }
+
+    &::-webkit-color-swatch-wrapper {
+      border-style: none;
+      padding: 0;
+    }
+
+    &::-webkit-color-swatch, &::-moz-color-swatch {
+      border-style: none;
+    }
   }
 
   .note {
     padding-top: 10px;
   }
 
-  button:not(.default):hover {
-    background-color: #242424;
+  button.icon-button:hover {
+    background-color: rgba(255, 255, 255, 15%);
   }
 }
 
@@ -239,7 +284,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 15px;
+  justify-content: center;
 
   .icon-box {
     width: 75px;
@@ -399,6 +444,9 @@ body {
   gap: 2px;
 
   button {
+    border-style: none;
+    background: none;
+    color: var(--foreground);
     display: flex;
     flex-direction: row;
     height: 30px;
@@ -407,6 +455,11 @@ body {
     gap: 2px;
     justify-content: flex-start;
     font-size: 15px;
+
+    &:hover {
+      /*background-color: color-mix(in srgb-linear, var(--background), var(--foreground) 20%);*/
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   }
 
   svg {

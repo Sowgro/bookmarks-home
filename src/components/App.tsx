@@ -42,7 +42,10 @@ function App() {
     return (
         <>
             <div className={"action-area"}>
-                <button onClick={() => setSidebarContent(<SettingsEditor/>)}>
+                <button
+                    className={"icon-button"}
+                    onClick={() => setSidebarContent(<SettingsEditor/>)}
+                >
                     <SettingsIcon/>
                 </button>
             </div>
@@ -62,10 +65,16 @@ function Sidebar() {
     return (
         <div className={`sidebar ${open ? 'open' : ''} ${swapSides ? 'swap-sides' : ''}`}>
             <div className={'action-area'}>
-                <button onClick={() => setSwapSides(!swapSides)}>
+                <button
+                    className={"icon-button"}
+                    onClick={() => setSwapSides(!swapSides)}
+                >
                     <SwapIcon/>
                 </button>
-                <button onClick={() => setSidebarContent(null)}>
+                <button
+                    className={"icon-button"}
+                    onClick={() => setSidebarContent(null)}
+                >
                     <CloseIcon/>
                 </button>
             </div>
