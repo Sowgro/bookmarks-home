@@ -14,17 +14,18 @@ function ContextMenu(props: {bmData: BookmarkTreeNode, isFolder?: boolean}) {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        let evl = () => {
-            open && setOpen(false);
-            document.body.removeEventListener('click', evl);
-        }
         if (open) {
-            document.body.addEventListener('click', evl);
+            let evl = () => {
+                open && setOpen(false);
+                document.removeEventListener('click', evl);
+            }
+            document.addEventListener('click', evl);
         }
     }, [open]);
 
     const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
+        e.stopPropagation();
         setOpen(!open);
     }
 
