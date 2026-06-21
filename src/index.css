@@ -263,7 +263,11 @@ body {
       padding: 0;
     }
 
-    &::-webkit-color-swatch, &::-moz-color-swatch {
+    &::-webkit-color-swatch {
+      border-style: none;
+    }
+
+    &::-moz-color-swatch {
       border-style: none;
     }
   }
