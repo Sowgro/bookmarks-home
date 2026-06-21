@@ -288,22 +288,28 @@ body {
     margin: 15px;
   }
 
-  .selected {
+  .icon-option {
+    position: relative;
+
+    &:hover .icon-box {
+      filter: brightness(75%);
+    }
+
+    &.selected .icon-box {
+      filter: brightness(50%);
+    }
+  }
+
+  .check {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     right: 0;
     bottom: 0;
     align-content: center;
     justify-content: center;
     align-items: center;
-    /* fill: black; */
-  }
-
-  .icon-option {
-    position: relative;
   }
 }
 

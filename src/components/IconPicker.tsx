@@ -192,10 +192,12 @@ function IconPicker(props: {bmData: BookmarkTreeNode}) {
 
 function IconOption(props: {children: ReactNode, isSelected: boolean, onSelect: () => void}) {
     return (
-        <div className={"icon-option"} onClick={props.onSelect}>
+        <div
+            className={"icon-option " + (props.isSelected ? "selected " : "")}
+            onClick={props.onSelect}>
             {props.children}
             {props.isSelected &&
-                <div className={"selected"}>
+                <div className={"check"}>
                     <Check/>
                 </div>
             }
