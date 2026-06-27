@@ -433,8 +433,8 @@ body {
   fill: white;
   position: absolute;
   top: 30px;
-  left: -30px;
-  right: -30px;
+  left: -35px;
+  right: -35px;
   border-radius: 5px;
   animation: fadeIn;
   animation-duration: 0.2s;
@@ -453,6 +453,7 @@ body {
     gap: 2px;
     justify-content: flex-start;
     font-size: 15px;
+    font-weight: normal;
 
     &:hover {
       background-color: #242424;
