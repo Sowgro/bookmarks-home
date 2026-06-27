@@ -44,7 +44,7 @@ function ContextMenu(props: {bmData: BookmarkTreeNode, isFolder?: boolean}) {
     const onEdit = (e: React.MouseEvent<HTMLButtonElement>) => {
         setOpen(false);
         e.preventDefault();
-        setSidebarContent(<BookmarkEditor bmData={props.bmData}/>)
+        setSidebarContent(<BookmarkEditor key={props.bmData.id} bmData={props.bmData}/>)
     };
 
     if (!settings.editMode) return;
